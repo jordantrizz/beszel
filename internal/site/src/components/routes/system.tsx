@@ -5,7 +5,7 @@ import type { GPUData } from "@/types"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import InfoBar from "./system/info-bar"
 import { useSystemData } from "./system/use-system-data"
-import { CpuChart, ContainerCpuChart } from "./system/charts/cpu-charts"
+import { CpuChart, ContainerCpuChart, ProcessCountChart } from "./system/charts/cpu-charts"
 import { MemoryChart, ContainerMemoryChart, SwapChart } from "./system/charts/memory-charts"
 import { RootDiskCharts, ExtraFsCharts } from "./system/charts/disk-charts"
 import { BandwidthChart, ContainerNetworkChart } from "./system/charts/network-charts"
@@ -63,6 +63,7 @@ export default memo(function SystemDetail({ id }: { id: string }) {
 	const hasContainersTable = hasContainers && compareSemVer(chartData.agentVersion, SEMVER_0_14_0) >= 0
 	const hasSystemd = system.info.sv
 	const hasGpu = hasGpuData || hasGpuPowerData
+	const hasProcessCountData = systemStats.some((record) => (record.stats?.pr ?? 0) > 0)
 
 	// keep tabsRef in sync for keyboard navigation
 	const tabs = ["core", "disk"]
@@ -120,6 +121,8 @@ export default memo(function SystemDetail({ id }: { id: string }) {
 					<SwapChart chartData={chartData} grid={grid} dataEmpty={dataEmpty} systemStats={systemStats} />
 
 					<LoadAverageChart chartData={chartData} grid={grid} dataEmpty={dataEmpty} />
+
+					{hasProcessCountData && <ProcessCountChart chartData={chartData} grid={grid} dataEmpty={dataEmpty} />}
 
 					<TemperatureChart {...coreProps} />
 
@@ -186,6 +189,7 @@ export default memo(function SystemDetail({ id }: { id: string }) {
 						<CpuChart {...coreProps} />
 						<MemoryChart {...coreProps} />
 						<LoadAverageChart chartData={chartData} grid={grid} dataEmpty={dataEmpty} />
+						{hasProcessCountData && <ProcessCountChart chartData={chartData} grid={grid} dataEmpty={dataEmpty} />}
 						<BandwidthChart {...coreProps} systemStats={systemStats} />
 						<TemperatureChart {...coreProps} setPageBottomExtraMargin={setPageBottomExtraMargin} />
 						<BatteryChart {...coreProps} />

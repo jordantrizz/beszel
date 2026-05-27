@@ -20,6 +20,7 @@ import (
 	"github.com/shirou/gopsutil/v4/host"
 	"github.com/shirou/gopsutil/v4/load"
 	"github.com/shirou/gopsutil/v4/mem"
+	"github.com/shirou/gopsutil/v4/process"
 )
 
 // Sets initial / non-changing values about the host system
@@ -201,6 +202,10 @@ func (a *Agent) getSystemStats(cacheTimeMs uint16) system.Stats {
 		systemStats.MemBuffCache = utils.BytesToGigabytes(cacheBuff)
 		systemStats.MemUsed = utils.BytesToGigabytes(v.Used)
 		systemStats.MemPct = utils.TwoDecimals(v.UsedPercent)
+	}
+
+	if pids, err := process.Pids(); err == nil {
+		systemStats.ProcessCount = uint32(len(pids))
 	}
 
 	// disk usage

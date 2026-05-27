@@ -40,6 +40,7 @@ func TestAverageSystemStatsSlice_SingleRecord(t *testing.T) {
 			NetworkSent:  10.5,
 			NetworkRecv:  20.25,
 			LoadAvg:      [3]float64{1.5, 2.0, 3.5},
+			ProcessCount: 123,
 			Bandwidth:    [2]uint64{1000, 2000},
 			DiskIO:       [2]uint64{500, 600},
 			Battery:      [2]uint8{80, 1},
@@ -63,6 +64,7 @@ func TestAverageSystemStatsSlice_SingleRecord(t *testing.T) {
 	assert.Equal(t, 10.5, result.NetworkSent)
 	assert.Equal(t, 20.25, result.NetworkRecv)
 	assert.Equal(t, [3]float64{1.5, 2.0, 3.5}, result.LoadAvg)
+	assert.Equal(t, uint32(123), result.ProcessCount)
 	assert.Equal(t, [2]uint64{1000, 2000}, result.Bandwidth)
 	assert.Equal(t, [2]uint64{500, 600}, result.DiskIO)
 	assert.Equal(t, uint8(80), result.Battery[0])
@@ -88,6 +90,7 @@ func TestAverageSystemStatsSlice_BasicAveraging(t *testing.T) {
 			NetworkSent:  10.0,
 			NetworkRecv:  20.0,
 			LoadAvg:      [3]float64{1.0, 2.0, 3.0},
+			ProcessCount: 101,
 			Bandwidth:    [2]uint64{1000, 2000},
 			DiskIO:       [2]uint64{400, 600},
 			Battery:      [2]uint8{80, 1},
@@ -109,6 +112,7 @@ func TestAverageSystemStatsSlice_BasicAveraging(t *testing.T) {
 			NetworkSent:  30.0,
 			NetworkRecv:  40.0,
 			LoadAvg:      [3]float64{3.0, 4.0, 5.0},
+			ProcessCount: 130,
 			Bandwidth:    [2]uint64{3000, 4000},
 			DiskIO:       [2]uint64{600, 800},
 			Battery:      [2]uint8{60, 1},
@@ -133,6 +137,7 @@ func TestAverageSystemStatsSlice_BasicAveraging(t *testing.T) {
 	assert.Equal(t, 20.0, result.NetworkSent)
 	assert.Equal(t, 30.0, result.NetworkRecv)
 	assert.Equal(t, [3]float64{2.0, 3.0, 4.0}, result.LoadAvg)
+	assert.Equal(t, uint32(116), result.ProcessCount)
 	assert.Equal(t, [2]uint64{2000, 3000}, result.Bandwidth)
 	assert.Equal(t, [2]uint64{500, 700}, result.DiskIO)
 	assert.Equal(t, uint8(70), result.Battery[0])

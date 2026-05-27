@@ -220,6 +220,7 @@ func AverageSystemStatsSlice(records []system.Stats) system.Stats {
 		sum.LoadAvg[0] += stats.LoadAvg[0]
 		sum.LoadAvg[1] += stats.LoadAvg[1]
 		sum.LoadAvg[2] += stats.LoadAvg[2]
+		sum.ProcessCount += stats.ProcessCount
 		sum.Bandwidth[0] += stats.Bandwidth[0]
 		sum.Bandwidth[1] += stats.Bandwidth[1]
 		sum.DiskIO[0] += stats.DiskIO[0]
@@ -361,6 +362,7 @@ func AverageSystemStatsSlice(records []system.Stats) system.Stats {
 	sum.LoadAvg[0] = twoDecimals(sum.LoadAvg[0] / count)
 	sum.LoadAvg[1] = twoDecimals(sum.LoadAvg[1] / count)
 	sum.LoadAvg[2] = twoDecimals(sum.LoadAvg[2] / count)
+	sum.ProcessCount = uint32(math.Round(float64(sum.ProcessCount) / count))
 	sum.Bandwidth[0] = sum.Bandwidth[0] / uint64(count)
 	sum.Bandwidth[1] = sum.Bandwidth[1] / uint64(count)
 	sum.Battery[0] = uint8(batterySum / int(count))

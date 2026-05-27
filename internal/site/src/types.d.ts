@@ -91,6 +91,8 @@ export interface SystemStats {
 	cpus?: number[]
 	/** load average */
 	la?: [number, number, number]
+	/** process count */
+	pr?: number
 	/** total memory (gb) */
 	m: number
 	/** memory used (gb) */

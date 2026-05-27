@@ -97,3 +97,37 @@ export function ContainerCpuChart({
 		</ChartCard>
 	)
 }
+
+export function ProcessCountChart({
+	chartData,
+	grid,
+	dataEmpty,
+}: {
+	chartData: ChartData
+	grid: boolean
+	dataEmpty: boolean
+}) {
+	return (
+		<ChartCard
+			empty={dataEmpty}
+			grid={grid}
+			title={t`Process Count`}
+			description={t`Number of running host processes`}
+		>
+			<AreaChartDefault
+				chartData={chartData}
+				dataPoints={[
+					{
+						label: t`Processes`,
+						dataKey: ({ stats }) => stats?.pr,
+						color: 1,
+						opacity: 0.4,
+					},
+				]}
+				tickFormatter={(val) => toFixedFloat(val, 0).toString()}
+				contentFormatter={({ value }) => decimalString(value, 0)}
+				domain={pinnedAxisDomain()}
+			/>
+		</ChartCard>
+	)
+}

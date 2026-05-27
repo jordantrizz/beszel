@@ -47,6 +47,7 @@ The [quick start guide](https://beszel.dev/guide/getting-started) and other docu
 - **Disk I/O** - Host system. Supports multiple partitions and devices.
 - **Network usage** - Host system and containers.
 - **Load average** - Host system.
+- **Process count** - Host system.
 - **Temperature** - Host system sensors.
 - **GPU usage / power draw** - Nvidia, AMD, and Intel.
 - **Battery** - Host system battery charge.
