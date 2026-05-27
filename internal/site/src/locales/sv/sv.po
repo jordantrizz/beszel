@@ -717,7 +717,6 @@ msgstr "Ange ditt engångslösenord."
 msgid "Ephemeral"
 msgstr "Flyktig"
 
-#: src/components/login/auth-form.tsx
 #: src/components/routes/settings/alerts-history-data-table.tsx
 #: src/components/routes/settings/config-yaml.tsx
 #: src/components/routes/settings/heartbeat.tsx
@@ -1140,6 +1139,10 @@ msgstr "Inga system hittades."
 msgid "Notifications"
 msgstr "Aviseringar"
 
+#: src/components/routes/system/charts/cpu-charts.tsx
+msgid "Number of running host processes"
+msgstr ""
+
 #: src/components/login/auth-form.tsx
 msgid "OAuth 2 / OIDC support"
 msgstr "Stöd för OAuth 2 / OIDC"
@@ -1307,9 +1310,17 @@ msgstr "Exakt användning vid den registrerade tidpunkten"
 msgid "Preferred Language"
 msgstr "Föredraget språk"
 
+#: src/components/routes/system/charts/cpu-charts.tsx
+msgid "Process Count"
+msgstr ""
+
 #: src/components/systemd-table/systemd-table.tsx
 msgid "Process started"
 msgstr "Process startad"
+
+#: src/components/routes/system/charts/cpu-charts.tsx
+msgid "Processes"
+msgstr ""
 
 #. Use 'Key' if your language requires many more characters
 #: src/components/add-system.tsx
@@ -1550,6 +1561,11 @@ msgstr "Swap-utrymme som används av systemet"
 msgid "Swap Usage"
 msgstr "Swap-användning"
 
+#: src/components/mode-toggle.tsx
+#: src/components/mode-toggle.tsx
+msgid "Switch theme"
+msgstr ""
+
 #: src/components/add-system.tsx
 #: src/components/alerts-history-columns.tsx
 #: src/components/containers-table/containers-table-columns.tsx
@@ -1659,8 +1675,8 @@ msgstr "Till e-postadress(er)"
 
 #: src/components/mode-toggle.tsx
 #: src/components/mode-toggle.tsx
-msgid "Toggle theme"
-msgstr "Växla tema"
+#~ msgid "Toggle theme"
+#~ msgstr "Växla tema"
 
 #: src/components/add-system.tsx
 #: src/components/routes/settings/tokens-fingerprints.tsx
